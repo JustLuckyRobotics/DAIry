@@ -23,11 +23,24 @@ python3 -m pip install -e .
 dairy --help
 ```
 
-Some systems, including many ROS2 setups, use an externally managed Python environment. If `pip` refuses with an externally-managed-environment error, do not use `--break-system-packages`. Use one of the options below.
+Some systems, including many ROS2 setups, use an externally managed Python environment. If `pip` refuses with an externally-managed-environment error, do not use `--break-system-packages`. Use `pipx`.
 
-### Recommended For ROS2: Dedicated DAIry Venv
+### Recommended For ROS2: pipx
 
-This keeps ROS2 and system Python untouched while still giving you a reusable `dairy` command.
+`pipx` keeps ROS2 and system Python untouched while still giving you a reusable `dairy` command.
+
+```bash
+sudo apt install pipx
+pipx ensurepath
+pipx install -e /home/jake/acuity_misc/DAIry
+dairy --help
+```
+
+Restart the shell if `dairy` is not found immediately after `pipx ensurepath`.
+
+### Alternative: Dedicated DAIry Venv
+
+Use this if `pipx` is unavailable:
 
 ```bash
 cd /home/jake/acuity_misc/DAIry
@@ -49,19 +62,6 @@ echo 'alias dairy="/home/jake/acuity_misc/DAIry/.venv/bin/dairy"' >> ~/.bashrc
 source ~/.bashrc
 dairy --help
 ```
-
-### Alternative: pipx
-
-`pipx` also avoids touching system Python:
-
-```bash
-sudo apt install pipx
-pipx ensurepath
-pipx install -e /home/jake/acuity_misc/DAIry
-dairy --help
-```
-
-Restart the shell if `dairy` is not found immediately after `pipx ensurepath`.
 
 ### No Install: PYTHONPATH
 
